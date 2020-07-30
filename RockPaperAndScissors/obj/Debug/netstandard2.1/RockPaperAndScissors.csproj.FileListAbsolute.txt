@@ -354,6 +354,8 @@ C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\ob
 C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\staticwebassets\RockPaperAndScissors.StaticWebAssets.xml
 C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\RockPaperAndScissors.dll
 C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\RockPaperAndScissors.pdb
-C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\integrity\B7qyU-90Gq-VEQD6w9LmuXlWh_8DPdkxBqDhYoFojZU=.hash
-C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\integrity\_AVEAaAFY22pWZVmDDRfbnEn4a5ysY8aWXY-y_A0Zpo=.hash
-C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\integrity\fjOcl_sr_q7LngFzM24HrKECg_umJoj5TNbqrBRRlaQ=.hash
+C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\RazorDeclaration\Shared\Confirmation.razor.g.cs
+C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\Razor\Shared\Confirmation.razor.g.cs
+C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\integrity\gnNR8q0pmD4nr5IkCuvySelqiV-Wiv9bQrnNBsDTiDM=.hash
+C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\integrity\UBeC6ZTmIP3T0QRMN3N359Nnqm5Kh8kzFX6ldUU2RKU=.hash
+C:\Users\k2lairrol\Documents\GitHub\RockPaperAndScissors\RockPaperAndScissors\obj\Debug\netstandard2.1\integrity\eQZf5mybQnxnH92bXXmMLTcHCKl3os0jOFLHiJNyWKg=.hash

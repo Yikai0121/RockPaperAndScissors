@@ -1,16 +1,125 @@
 ﻿@page "/"
+@using System.Timers;
+@implements IDisposable
+@using RockPaperAndScissors.Helpers
+@using RockPaperAndScissors.Shared
 
 <h1>剪刀 石頭 布</h1>
 
-<button class="btn btn-info">在玩一次</button>
+@*@if (!string.IsNullOrEmpty(resultMessage))
+{
+    <h3 style="color:@resultMessageColor">@resultMessage</h3>
+}*@
+
+<button class="btn btn-info" @onclick="PlayAgain">再玩一次</button>
 
 <div style="display:flex;justify-content:center;margin-bottom:20px">
-    <img src="~/rock.jpg" class="image" />
+    <img src="@opponentHand.Image" class="image" />
 </div>
 
 
 <div style="display:flex;justify-content:space-around;">
-    <img src="~/paper.jpg" class="image selectable-image" />
-    <img src="~/rock.jpg" class="image selectable-image" />
-    <img src="~/scissors.jpg" class="image selectable-image" />
+    @foreach (var hand in hands)
+    {
+        <img src="@hand.Image" class="image selectable-image" @onclick="@(() => SelectHand(hand) )" />
+    }
+
+    @*Create an image component, called Img, which will receive as a parameter the URL of an image and will do the following:
+
+    - If the URL is null, then a default image will be displayed (it can be an image with a question mark)
+
+    - If the URL is not null, then it will be used to display the image.
+    @foreach (var hand in hands2)
+    {
+        <img src="@(string.IsNullOrEmpty(hand.Image)? "https://img-a.udemycdn.com/redactor/raw/2020-06-08_01-33-11-d45c70c412ff2d2728c8f714c8e5e352.PNG ":hand.Image)" class="image selectable-image" @onclick="@(() => SelectHand(hand) )" />
+    }*@
+
 </div>
+<Confirmation @ref="confirmation"  onConfirm="onConfirm" playAgain="PlayAgain">
+    <div style="color:@resultMessageColor">
+       @resultMessage
+    </div>
+</Confirmation>
+
+@code
+{
+    Confirmation confirmation;
+
+    List<Hand> hands = new List<Hand>()
+    {
+        new Hand{Selection = OptionRPS.Paper, LosesAgainst = OptionRPS.Scissors,
+            WinAgainst= OptionRPS.Rock, Image="paper.jpg"},
+
+        new Hand{Selection = OptionRPS.Rock, LosesAgainst = OptionRPS.Paper,
+            WinAgainst= OptionRPS.Scissors, Image="rock.jpg"},
+
+        new Hand{Selection = OptionRPS.Scissors, LosesAgainst = OptionRPS.Rock,
+            WinAgainst= OptionRPS.Paper, Image="scissors.jpg"},
+    };
+    //List<Hand> hands2 = new List<Hand>()
+    //{
+    //      new Hand{Selection = OptionRPS.Paper, LosesAgainst = OptionRPS.Scissors,
+    //        WinAgainst= OptionRPS.Rock}
+    //};
+
+    Timer timer;
+    Hand opponentHand;
+    string resultMessage = string.Empty;
+    string resultMessageColor = string.Empty;
+    protected override void OnInitialized()
+    {
+        opponentHand = hands[0];
+        timer = new Timer();
+        timer.Interval = 100;
+        timer.Elapsed += TimeOnElapsed;
+        timer.Start();
+    }
+    int indexOpponentHand = 0;
+    private void TimeOnElapsed(object sender, ElapsedEventArgs e)
+    {
+        indexOpponentHand = (indexOpponentHand + 1) % hands.Count;
+        opponentHand = hands[indexOpponentHand];
+        StateHasChanged();
+    }
+    private void SelectHand(Hand hand)
+    {
+
+        timer.Stop();
+        confirmation.Show();
+        var result = hand.PlayAgainst(opponentHand);
+        if (result == GameStatus.Victory)
+        {
+
+            resultMessage =  "獲勝!!!!";
+            resultMessageColor = "red";
+        }
+        else if (result == GameStatus.Loss)
+        {
+            resultMessage = "失敗Q _ Q";
+            resultMessageColor = "green";
+        }
+        else
+        {
+            resultMessage = "平手!再接再厲!";
+            resultMessageColor = "blue";
+        }
+    }
+    void onConfirm()
+    {
+        confirmation.Hide();
+
+    }
+    private void PlayAgain()
+    {
+        timer.Start();
+        confirmation.Hide();
+        resultMessage = string.Empty;
+    }
+    public void Dispose()
+    {
+        if (timer != null)
+        {
+            timer.Dispose();
+        }
+    }
+}
